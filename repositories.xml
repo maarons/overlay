@@ -1,0 +1,11 @@
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>maarons</name>
+    <description lang="en">Personal overlay</description>
+    <owner type="person">
+      <email>marek@sapota.org</email>
+      <name>Marek Sapota</name>
+    </owner>
+    <source type="git">git://github.com/maarons/overlay.git</source>
+  </repo>
+</repositories>
