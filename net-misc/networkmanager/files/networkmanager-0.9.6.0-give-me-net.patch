@@ -1,0 +1,33 @@
+--- a/initscript/Gentoo/NetworkManager.in
++++ b/initscript/Gentoo/NetworkManager.in
+@@ -23,21 +23,21 @@
+       --exec /usr/sbin/NetworkManager -- --pid-file /var/run/NetworkManager.pid
+    local _retval=$?
+    eend "${_retval}"
+-   if [ "x${_retval}" = 'x0' ] && ! nm-online -t "${INACTIVE_TIMEOUT}"; then
+-      einfo "Marking NetworkManager as inactive. It will automatically be marked"
+-      einfo "as started after a network connection has been established."
+-      mark_service_inactive
+-   fi
++   # if [ "x${_retval}" = 'x0' ] && ! nm-online -t "${INACTIVE_TIMEOUT}"; then
++   #    einfo "Marking NetworkManager as inactive. It will automatically be marked"
++   #    einfo "as started after a network connection has been established."
++   #    mark_service_inactive
++   # fi
+    return "${_retval}"
+ }
+ 
+ stop() {
+    # If we are re-called by a dispatcher event, we want to mark the service
+    # as inactive without stopping the daemon
+-   if yesno "${IN_BACKGROUND}"; then
+-      mark_service_inactive "${SVCNAME}"
+-      return 0
+-   fi
++   # if yesno "${IN_BACKGROUND}"; then
++   #    mark_service_inactive "${SVCNAME}"
++   #    return 0
++   # fi
+ 
+    ebegin "Stopping NetworkManager"
+    start-stop-daemon --stop --quiet --pidfile /var/run/NetworkManager.pid
