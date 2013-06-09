@@ -1,0 +1,15 @@
+--- liboath/gl/Makefile.orig	2013-06-08 20:52:27.936778879 -0700
++++ liboath/gl/Makefile	2013-06-08 20:53:58.076565783 -0700
+@@ -850,11 +850,11 @@
+ # statements but through direct file reference. Therefore this snippet must be
+ # present in all Makefile.am that need it. This is ensured by the applicability
+ # 'all' defined above.
+ BUILT_SOURCES = $(ALLOCA_H) $(ERRNO_H) arg-nonnull.h c++defs.h \
+ 	warn-on-use.h $(STDALIGN_H) $(STDBOOL_H) $(STDDEF_H) \
+-	$(STDINT_H) stdio.h stdlib.h string.h sys/stat.h time.h \
++	$(STDINT_H) stdlib.h string.h sys/stat.h time.h \
+ 	unistd.h
+ SUFFIXES = 
+ MOSTLYCLEANFILES = core *.stackdump alloca.h alloca.h-t errno.h \
+ 	errno.h-t arg-nonnull.h arg-nonnull.h-t c++defs.h c++defs.h-t \
+ 	warn-on-use.h warn-on-use.h-t stdalign.h stdalign.h-t \
