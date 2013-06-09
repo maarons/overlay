@@ -11,7 +11,7 @@ MY_P="CherryPy-${PV}"
 
 DESCRIPTION="CherryPy is a pythonic, object-oriented HTTP framework"
 HOMEPAGE="http://www.cherrypy.org/ http://pypi.python.org/pypi/CherryPy"
-SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="https://pypi.python.org/packages/source/C/CherryPy/CherryPy-3.2.4.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
