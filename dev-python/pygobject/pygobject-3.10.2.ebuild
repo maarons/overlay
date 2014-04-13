@@ -7,7 +7,7 @@ GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} )
 
-inherit gnome2 python-r1 virtualx
+inherit autotools gnome2 python-r1 virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
@@ -43,8 +43,8 @@ DEPEND="${COMMON_DEPEND}
 		x11-libs/gdk-pixbuf:2[introspection]
 		x11-libs/gtk+:3[introspection]
 		x11-libs/pango[introspection] )
+	gnome-base/gnome-common
 "
-# gnome-base/gnome-common required by eautoreconf
 
 # We now disable introspection support in slot 2 per upstream recommendation
 # (see https://bugzilla.gnome.org/show_bug.cgi?id=642048#c9); however,
@@ -55,6 +55,12 @@ RDEPEND="${COMMON_DEPEND}
 	!<dev-python/pygobject-2.28.6-r50:2[introspection]"
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-python34.patch"
+	pushd "${WORKDIR}/${P}" > /dev/null
+	rm Makefile.in || die
+	rm gi/Makefile.in || die
+	popd > /dev/null
+	eautoreconf
 	gnome2_src_prepare
 	python_copy_sources
 }
