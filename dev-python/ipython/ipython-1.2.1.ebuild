@@ -18,7 +18,7 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~ia64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="doc emacs examples matplotlib mongodb notebook nbconvert octave
-	qt4 +smp test wxwidgets"
+	+smp test wxwidgets"
 
 PY2_USEDEP=$(python_gen_usedep 'python2*')
 
@@ -55,10 +55,7 @@ RDEPEND="${CDEPEND}
 		dev-python/pygments[${PYTHON_USEDEP}]
 		dev-python/sphinx[${PYTHON_USEDEP}]
 		$(gen_python_deps dev-python/jinja)
-	)
-	qt4? ( || ( dev-python/PyQt4[${PYTHON_USEDEP}] dev-python/pyside[${PYTHON_USEDEP}] )
-			dev-python/pygments[${PYTHON_USEDEP}]
-			dev-python/pyzmq[${PYTHON_USEDEP}] )"
+	)"
 DEPEND="${CDEPEND}
 	test? ( dev-python/nose[${PYTHON_USEDEP}] )"
 
