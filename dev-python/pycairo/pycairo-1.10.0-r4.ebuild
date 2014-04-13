@@ -40,6 +40,7 @@ src_prepare() {
 	rm -f src/config.h || die
 	epatch "${FILESDIR}/${PN}-1.10.0-svg_check.patch"
 	epatch "${FILESDIR}/${PN}-1.10.0-xpyb.patch"
+	epatch "${FILESDIR}/${PN}-1.10.0-waf-unpack.patch"
 	epatch "${FILESDIR}"/py2cairo-1.10.0-ppc-darwin.patch
 	popd > /dev/null
 
@@ -53,6 +54,12 @@ src_prepare() {
 	preparation() {
 		if [[ ${EPYTHON} == python3.* ]]; then
 			cp -r -l "${WORKDIR}/pycairo-${PYCAIRO_PYTHON3_VERSION}" "${BUILD_DIR}" || die
+			pushd "${BUILD_DIR}" > /dev/null
+			wafdir="$(./waf unpack)"
+			pushd "${wafdir}" > /dev/null
+			epatch "${FILESDIR}/${PN}-1.10.0-waf-python34.patch"
+			popd > /dev/null
+			popd > /dev/null
 		else
 			cp -r -l "${WORKDIR}/py2cairo-${PYCAIRO_PYTHON2_VERSION}" "${BUILD_DIR}" || die
 		fi
