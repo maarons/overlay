@@ -18,7 +18,7 @@ RDEPEND="
 	>=dev-lang/mono-3.0
 	>=dev-dotnet/smartirc4net-0.4.5.1
 	>=dev-dotnet/nini-1.1.0-r2
-	=dev-dotnet/log4net-1.2.10
+	>=dev-dotnet/log4net-1.2.10
 	dbus? (	dev-dotnet/ndesk-dbus
 		dev-dotnet/ndesk-dbus-glib )
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12 )
