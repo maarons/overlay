@@ -21,7 +21,8 @@ RDEPEND="
 	>=dev-dotnet/log4net-1.2.10
 	dbus? (	dev-dotnet/ndesk-dbus
 		dev-dotnet/ndesk-dbus-glib )
-	gtk? ( >=dev-dotnet/gtk-sharp-2.12 )
+	gtk? ( >=dev-dotnet/gtk-sharp-2.12
+		>=dev-dotnet/glade-sharp-2.12 )
 	libnotify? ( dev-dotnet/notify-sharp )
 	spell? ( >=app-text/gtkspell-2.0.9:2 )
 "
