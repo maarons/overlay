@@ -42,11 +42,11 @@ src_unpack() {
 	cd "${S}" || die
 	ar x linux-image.deb || die
 	tar xf data.tar.bz2 || die
-	cp boot/config-${PV}-*-generic kernel-config-x86_64-${PV}-gentoo || die
+	cp boot/config-${PV}-*-generic kernel-config-x86_64-${PVR}-gentoo || die
 }
 
 src_install() {
 	cd "${S}" || die
 	mkdir -p "${D}/etc/kernels" || die
-	cp kernel-config-x86_64-${PV}-gentoo "${D}/etc/kernels" || die
+	cp kernel-config-x86_64-${PVR}-gentoo "${D}/etc/kernels" || die
 }
