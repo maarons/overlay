@@ -1,4 +1,4 @@
-# Copyright (c) 2011, 2012, 2013 Marek Sapota
+# Copyright (c) 2011, 2012, 2013, 2014 Marek Sapota
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python{3_2,3_3} )
+PYTHON_COMPAT=( python{3_2,3_3,3_4} )
 
 inherit distutils-r1 vcs-snapshot
 
@@ -37,13 +37,13 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="dev-python/dbus-python
+	dev-python/psutil
 	app-admin/sudo
 	sys-power/pm-utils
-	sys-power/cpufrequtils
-	sys-power/upower
+	sys-power/cpupower
+	sys-power/upower-pm-utils
 	sys-fs/udisks:0
 	x11-misc/xscreensaver
 	x11-apps/xrandr
-	net-wireless/bluez[test-programs]
-	dev-python/pygobject:3"
+	dev-python/pygobject:3[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
