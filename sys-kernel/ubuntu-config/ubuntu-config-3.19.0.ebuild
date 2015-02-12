@@ -25,7 +25,7 @@ EAPI=5
 
 DESCRIPTION="Ubuntu kernel config"
 HOMEPAGE="http://kernel.ubuntu.com/~kernel-ppa"
-SRC_URI="http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.15.2-utopic/linux-image-3.15.2-031502-generic_3.15.2-031502.201406261639_amd64.deb"
+SRC_URI="http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.19-vivid/linux-image-3.19.0-031900-generic_3.19.0-031900.201502091451_amd64.deb"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -36,17 +36,26 @@ SLOT="${PVR}"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+get_config_file_name() {
+	CONFIG_FILE_NAME=kernel-config-x86_64-${PV}-gentoo
+	if [[ $PR != 'r0' ]]; then
+		CONFIG_FILE_NAME+=-${PR}
+	fi
+}
+
 src_unpack() {
 	mkdir -p "${S}" || die
 	cp "${DISTDIR}/${A}" "${S}/linux-image.deb" || die
 	cd "${S}" || die
 	ar x linux-image.deb || die
 	tar xf data.tar.bz2 || die
-	cp boot/config-${PV}-*-generic kernel-config-x86_64-${PV}-gentoo || die
+	get_config_file_name
+	cp boot/config-${PV}-*-generic "${CONFIG_FILE_NAME}" || die
 }
 
 src_install() {
 	cd "${S}" || die
 	mkdir -p "${D}/etc/kernels" || die
-	cp kernel-config-x86_64-${PV}-gentoo "${D}/etc/kernels" || die
+	get_config_file_name
+	cp "${CONFIG_FILE_NAME}" "${D}/etc/kernels" || die
 }
