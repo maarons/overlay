@@ -8,4 +8,13 @@
     </owner>
     <source type="git">git://github.com/maarons/overlay.git</source>
   </repo>
+  <repo quality="experimental" status="unofficial">
+    <name>maarons-sysconfig</name>
+    <description lang="en">Personal overlay</description>
+    <owner type="person">
+      <email>marek@sapota.org</email>
+      <name>Marek Sapota</name>
+    </owner>
+    <source type="git">git@bitbucket.org:maarons/sysconfig.git</source>
+  </repo>
 </repositories>
