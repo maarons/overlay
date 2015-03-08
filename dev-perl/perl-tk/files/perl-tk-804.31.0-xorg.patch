@@ -1,0 +1,37 @@
+--- myConfig	2015-03-08 00:02:29.989264454 -0800
++++ myConfig	2015-03-08 00:03:13.505226725 -0800
+@@ -316,7 +316,7 @@
+ 	}
+ 	close(XMKMF);
+ 	while (defined $uidir) {
+-	  last unless ($uidir =~ s!^.*-I(\S+)/lib/X11/config!!o);
++	  last unless ($uidir =~ s!^.*-I(\S+)/lib(64)/X11/config!!o);
+ 	  $try = $1;
+ 	  $try =~ s/'x11root'/$ENV{X11ROOT}/;
+ 	  push(@xdirs,$try);
+@@ -366,6 +366,7 @@
+   unless (defined $xlib)
+     {
+       $xlib = &lX11(0,chooseX11(</usr/X11*/lib>),chooseX11(</usr/lib/X11*>),</usr/Xfree*/lib>,'/usr/X386/lib',
++                    '/usr/lib64',
+                     '/opt/X11/lib')
+     }
+ 
+@@ -385,7 +386,7 @@
+       exit 0;
+     }
+ 
+-  ($base) = $xlib =~ m#-L(.*)(?:/lib)$#x;
++  ($base) = $xlib =~ m#-L(.*)(?:/lib(64))$#x;
+   if (defined $X11INC)
+     {
+       $xinc = &IX11("$X11INC");
+@@ -397,6 +398,8 @@
+     {
+       warn "Cannot find X include files via $base/include\n";
+       $xinc = &IX11(map("$_/include",@xdirs),
++            chooseX11(</usr/include/X11*>),
++		    '/usr/include',
+ 		    '/usr/openwin/include',
+ 		    chooseX11(</usr/X11*/include>),
+ 		    chooseX11(</usr/include/X11*>),
