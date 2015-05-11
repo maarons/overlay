@@ -25,7 +25,7 @@ EAPI=5
 
 DESCRIPTION="Ubuntu kernel config"
 HOMEPAGE="http://kernel.ubuntu.com/~kernel-ppa"
-SRC_URI="http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.18-vivid/linux-image-3.18.0-031800-generic_3.18.0-031800.201412071935_amd64.deb"
+SRC_URI="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.0.2-wily/linux-image-4.0.2-040002-generic_4.0.2-040002.201505081529_amd64.deb"
 
 LICENSE="GPL-2"
 SLOT="0"
