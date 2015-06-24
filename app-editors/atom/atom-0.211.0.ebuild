@@ -24,7 +24,7 @@
 EAPI=5
 
 DESCRIPTION="A hackable text editor for the 21st Century"
-HOMEPAGE="http://kernel.ubuntu.com/~kernel-ppa"
+HOMEPAGE="https://atom.io"
 SRC_URI="https://github.com/atom/atom/releases/download/v0.211.0/atom-amd64.deb"
 
 LICENSE="MIT"
