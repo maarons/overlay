@@ -25,7 +25,7 @@ EAPI=5
 
 DESCRIPTION="A hackable text editor for the 21st Century"
 HOMEPAGE="https://atom.io"
-SRC_URI="https://github.com/atom/atom/releases/download/v1.0.0/atom-amd64.deb"
+SRC_URI="https://github.com/atom/atom/releases/download/v${PV}/atom-amd64.deb -> atom-${PV}.deb"
 
 LICENSE="MIT"
 SLOT="0"
