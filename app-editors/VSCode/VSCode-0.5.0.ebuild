@@ -44,5 +44,5 @@ src_unpack() {
 
 src_install() {
 	rsync -a "${S}/VSCode-linux-x64" "${D}/opt/" || die
-	dosym /opt/VSCode-linux-x64/Code /usr/bin/Code || die
+	dosym /opt/VSCode-linux-x64/Code /usr/bin/code || die
 }
