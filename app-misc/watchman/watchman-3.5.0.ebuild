@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Marek Sapota
+# Copyright (c) 2015 Marek Sapota
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -28,18 +28,16 @@ AUTOTOOLS_IN_SOURCE_BUILD=1
 inherit autotools-utils
 
 DESCRIPTION="A file watching service."
-HOMEPAGE="https://github.com/facebook/watchman"
+HOMEPAGE="https://facebook.github.io/watchman/"
 
-MAKEOPTS+=" -j1"
-
+EGIT_REPO_URI="https://github.com/facebook/watchman.git"
+SRC_URI=""
 if [[ ${PV} == "9999" ]]; then
-	EGIT_REPO_URI="git://github.com/facebook/watchman.git"
-	SRC_URI=""
-	inherit git-2
+	EGIT_COMMIT="master"
 else
-	SRC_URI="https://github.com/facebook/watchman/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	inherit vcs-snapshot
+	EGIT_COMMIT="v${PV}"
 fi
+inherit git-2
 
 LICENSE="Apache-2.0"
 SLOT="0"
