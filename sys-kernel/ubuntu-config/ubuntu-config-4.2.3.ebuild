@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Marek Sapota
+# Copyright (c) 2013, 2014 Marek Sapota
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -23,26 +23,39 @@
 
 EAPI=5
 
-DESCRIPTION="A hackable text editor for the 21st Century"
-HOMEPAGE="https://atom.io"
-SRC_URI="https://github.com/atom/atom/releases/download/v${PV}/atom-amd64.deb -> atom-${PV}.deb"
+DESCRIPTION="Ubuntu kernel config"
+HOMEPAGE="http://kernel.ubuntu.com/~kernel-ppa"
+SRC_URI="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.2.3-unstable/linux-image-4.2.3-040203-generic_4.2.3-040203.201510030832_amd64.deb"
 
-LICENSE="MIT"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
+SLOT="${PVR}"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+get_config_file_name() {
+	CONFIG_FILE_NAME=kernel-config-x86_64-${PV}-gentoo
+	if [[ $PR != 'r0' ]]; then
+		CONFIG_FILE_NAME+=-${PR}
+	fi
+}
+
 src_unpack() {
 	mkdir -p "${S}" || die
-	cp "${DISTDIR}/${A}" "${S}/atom.deb" || die
+	cp "${DISTDIR}/${A}" "${S}/linux-image.deb" || die
 	cd "${S}" || die
-	ar x atom.deb || die
-	tar xf data.tar.gz || die
+	ar x linux-image.deb || die
+	tar xf data.tar.bz2 || die
+	get_config_file_name
+	cp boot/config-${PV}-*-generic "${CONFIG_FILE_NAME}" || die
 }
 
 src_install() {
-	cp -r "${S}/usr" "${D}/usr" || die
+	cd "${S}" || die
+	mkdir -p "${D}/etc/kernels" || die
+	get_config_file_name
+	cp "${CONFIG_FILE_NAME}" "${D}/etc/kernels" || die
 }
