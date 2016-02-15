@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Marek Sapota
+# Copyright (c) 2015, 2016 Marek Sapota
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -23,11 +23,11 @@
 
 EAPI=5
 
-DESCRIPTION="A hackable text editor for the 21st Century"
-HOMEPAGE="https://atom.io"
-SRC_URI="https://github.com/atom/atom/releases/download/v${PV}/atom-amd64.deb -> atom-${PV}.deb"
+DESCRIPTION="Build and debug modern web and cloud applications."
+HOMEPAGE="https://code.visualstudio.com/"
+SRC_URI="https://az764295.vo.msecnd.net/public/0.10.6-release/VSCode-linux64.zip -> VSCode-${PV}.zip"
 
-LICENSE="MIT"
+LICENSE="VSCode"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
@@ -37,12 +37,12 @@ RDEPEND="${DEPEND}"
 
 src_unpack() {
 	mkdir -p "${S}" || die
-	cp "${DISTDIR}/${A}" "${S}/atom.deb" || die
+	cp "${DISTDIR}/${A}" "${S}/VSCode.zip" || die
 	cd "${S}" || die
-	ar x atom.deb || die
-	tar xf data.tar.gz || die
+	unzip VSCode.zip || die
 }
 
 src_install() {
-	cp -r "${S}/usr" "${D}/usr" || die
+	rsync -a "${S}/VSCode-linux-x64" "${D}/opt/" || die
+	dosym /opt/VSCode-linux-x64/Code /usr/bin/code || die
 }
